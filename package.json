@@ -22,7 +22,7 @@
     "lint": "pnpm run /^lint:/",
     "lint:eslint": "eslint --ext .cjs,.ts .",
     "lint:tsc": "tsc",
-    "serve:dev": "vercel dev",
+    "serve:dev": "pnpm run build && vercel dev",
     "test": "vitest",
     "test:coverage": "vitest run --coverage"
   },
