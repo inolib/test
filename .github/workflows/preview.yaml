@@ -24,11 +24,11 @@ jobs:
         with:
           version: 8
 
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: pnpm
+      # - name: Install Node.js
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
+      #     cache: pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -59,10 +59,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # - name: Install pnpm
-      #   uses: pnpm/action-setup@v2
-      #   with:
-      #     version: 8
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
       - name: Install Vercel CLI
         run: pnpm add --global vercel@latest
