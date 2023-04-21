@@ -69,7 +69,10 @@ jobs:
       - name: Pull Project Settings
         run: vercel pull --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: Build
+      - name: Build API
+        run: pnpm run build
+
+      - name: Build Vercel
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy
