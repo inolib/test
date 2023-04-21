@@ -8,12 +8,7 @@ jobs:
   ci:
     name: CI (Lint and Test)
 
-    strategy:
-      matrix:
-        node-version: [18]
-        os: [ubuntu-latest]
-
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -27,13 +22,13 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
           cache: pnpm
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build types
+      - name: Build Types
         run: pnpm run build:types
 
       - name: Lint
@@ -45,12 +40,7 @@ jobs:
   cd:
     name: CD (Build and Deploy)
 
-    strategy:
-      matrix:
-        node-version: [18]
-        os: [ubuntu-latest]
-
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     needs: ci
 
@@ -70,13 +60,13 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
           cache: pnpm
 
       - name: Install Vercel CLI
         run: pnpm add --global vercel@latest
 
-      - name: Pull project settings
+      - name: Pull Project Settings
         run: vercel pull --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Build

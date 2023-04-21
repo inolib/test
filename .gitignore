@@ -2,11 +2,8 @@
 /api/
 /coverage/
 /node_modules/
-
-/.env
-/.env.*
 /src/modules/**/*.d.ts
 /src/modules/scalars/*.gql
 /src/modules/scalars/*.graphql
-
-.vercel
+/.env
+/.env.*

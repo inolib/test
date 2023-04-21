@@ -1,10 +1,11 @@
 {
   "name": "@inolib/api",
   "version": "0.0.0",
+  "private": true,
   "description": "INOLIB’s GraphQL API",
   "type": "module",
   "scripts": {
-    "build": "vercel build",
+    "build": "pnpm run build:types && pnpm run build:api",
     "build:api": "vite build",
     "build:types": "pnpm run build:types.gql && pnpm run build:types.prisma",
     "build:types.gql": "vite-node ./src/modules/prebuild.ts && graphql-codegen && vite-node ./src/modules/postbuild.ts",
@@ -12,8 +13,6 @@
     "db:push": "prisma db push",
     "db:seed": "vite-node ./prisma/seed.ts",
     "db:studio": "prisma studio --browser none",
-    "deploy": "vercel deploy --prebuilt",
-    "dev": "vercel dev",
     "format": "pnpm run format:prettier && pnpm run format:jsdoc && pnpm run format:packagejson && pnpm run format:prisma && pnpm run format:sort-imports",
     "format:jsdoc": "prettier --config ./.config/prettier/.prettierrc.jsdoc.cjs --write ./**/*.cjs ./**/*.ts",
     "format:packagejson": "prettier --config ./.config/prettier/.prettierrc.packagejson.cjs --write ./package.json",
@@ -23,6 +22,7 @@
     "lint": "pnpm run lint:eslint && pnpm run lint:tsc",
     "lint:eslint": "eslint --ext .cjs,.ts .",
     "lint:tsc": "tsc",
+    "serve:dev": "pnpm run build && vercel build && vercel dev",
     "test": "vitest",
     "test:coverage": "vitest run --coverage"
   },
