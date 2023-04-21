@@ -1,0 +1,9 @@
+/.vercel/
+/api/
+/coverage/
+/node_modules/
+
+/src/modules/**/*.d.ts
+
+!/.config/
+!**/*.cjs

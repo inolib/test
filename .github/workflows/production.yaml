@@ -1,0 +1,78 @@
+name: CI/CD (Production)
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  ci:
+    name: CI (Lint and Test)
+
+    strategy:
+      matrix:
+        node-version: [18]
+        os: [ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm run ci:lint
+
+      # - name: Test
+      #   run: pnpm run ci:test
+
+  cd:
+    name: CD (Build and Deploy)
+
+    strategy:
+      matrix:
+        node-version: [18]
+        os: [ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    needs: ci
+
+    env:
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install Vercel CLI
+        run: pnpm add --global vercel@latest
+
+      - name: Pull project settings
+        run: vercel pull --environment=production
+
+      - name: Build
+        run: vercel build --prod
+
+      - name: Deploy
+        run: vercel deploy --prebuilt --prod

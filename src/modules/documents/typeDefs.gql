@@ -1,0 +1,15 @@
+extend type Query {
+  documents: [Document!]!
+}
+
+# type Mutation {
+#   newDocument(Name: String!, category: String!, date: DateTime!, type: String!): Document
+# }
+
+type Document {
+  id: Cuid!
+  name: String!
+  type: String!
+  category: String!
+  date: DateTime!
+}

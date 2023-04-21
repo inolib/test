@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["."],
+  "files": [
+    "./.eslintrc.cjs",
+    "./.prettierrc.cjs",
+    "./.config/prettier/.prettierrc.jsdoc.cjs",
+    "./.config/prettier/.prettierrc.packagejson.cjs",
+    "./.config/prettier/.prettierrc.prisma.cjs",
+    "./.config/prettier/.prettierrc.sort-imports.cjs"
+  ]
+}
