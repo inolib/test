@@ -6,7 +6,7 @@ on:
 
 jobs:
   ci:
-    name: CI (Lint and Test)
+    name: CI (Build, Lint, Test)
 
     runs-on: ubuntu-latest
 
@@ -28,8 +28,8 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build Types
-        run: pnpm run build:types
+      - name: Build
+        run: pnpm run build
 
       - name: Lint
         run: pnpm run lint
@@ -38,7 +38,7 @@ jobs:
       #   run: pnpm run test
 
   cd:
-    name: CD (Build and Deploy)
+    name: CD (Build, Deploy)
 
     runs-on: ubuntu-latest
 
@@ -75,7 +75,7 @@ jobs:
       - name: Pull Project Settings
         run: vercel pull --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: Build Vercel
+      - name: Build
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy
