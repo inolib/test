@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm run build:types && pnpm run build:api",
+  "buildCommand": "",
   "devCommand": "vite --port $PORT",
   "installCommand": "pnpm install --frozen-lockfile",
   "outputDirectory": "./api"
