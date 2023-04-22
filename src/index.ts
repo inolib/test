@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
 import { useGraphQLModules } from "@envelop/graphql-modules";
-import { PrismaClient } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
 import express, { type Request, type Response } from "express";
 import { createApplication } from "graphql-modules";
 import { createYoga } from "graphql-yoga";
