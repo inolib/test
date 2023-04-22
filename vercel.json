@@ -2,5 +2,6 @@
   "buildCommand": "",
   "devCommand": "vite --port $PORT",
   "installCommand": "pnpm install --frozen-lockfile",
-  "outputDirectory": "./api"
+  "outputDirectory": "./api",
+  "rewrites": [{ "source": "/", "destination": "/api" }]
 }
