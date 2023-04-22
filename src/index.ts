@@ -1,8 +1,5 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
-
 import { useGraphQLModules } from "@envelop/graphql-modules";
 import { PrismaClient } from "@prisma/client";
-// import express, { type Request, type Response } from "express";
 import { createApplication } from "graphql-modules";
 import { createYoga } from "graphql-yoga";
 
@@ -25,13 +22,9 @@ const yoga = createYoga({
     origin: process.env.CORS_ORIGIN ?? "*",
   },
   graphiql: false,
-  graphqlEndpoint: "/api",
+  graphqlEndpoint: "/",
   landingPage: false,
 });
-
-// const app = express();
-
-// app.use(yoga);
 
 export const viteNodeApp = yoga;
 export default yoga;
