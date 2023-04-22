@@ -2,7 +2,7 @@
 
 import { useGraphQLModules } from "@envelop/graphql-modules";
 import { PrismaClient } from "@prisma/client";
-import express, { type Request, type Response } from "express";
+// import express, { type Request, type Response } from "express";
 import { createApplication } from "graphql-modules";
 import { createYoga } from "graphql-yoga";
 
@@ -29,12 +29,9 @@ const yoga = createYoga({
   landingPage: false,
 });
 
-const app = express();
+// const app = express();
 
-app.use(yoga);
+// app.use(yoga);
 
-export const viteNodeApp = app;
-
-export default async (request: Request, response: Response) => {
-  await app(request, response);
-};
+export const viteNodeApp = yoga;
+export default yoga;
