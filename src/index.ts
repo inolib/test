@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
 import { useGraphQLModules } from "@envelop/graphql-modules";
-import { Prisma, PrismaClient } from "@prisma/client";
+import Prisma from "@prisma/client";
 import express, { type Request, type Response } from "express";
 import { createApplication } from "graphql-modules";
 import { createYoga } from "graphql-yoga";
 
 import { contactModule, documentsModule, scalarModule, userModule } from "./modules";
+
+const { PrismaClient } = Prisma;
 
 const makeApp = async () => {
   const yoga = createYoga({
